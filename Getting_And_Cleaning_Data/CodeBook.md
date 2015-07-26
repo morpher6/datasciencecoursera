@@ -1,9 +1,6 @@
--- Let's check if working directory is present otherwise exit the script
--- mind the underscores in the directory's name
-
+-- Let's check if working directory is present otherwise exit the script and mind the underscores in the directory's name. Read all files and dirs in specified directory
 dir = "./UCI_HAR_Dataset/"
 if (dir.exists(dir)){
-  -- read all files and dirs in specified directory
   file_list <- list.files(path = dir,pattern = "*")
 } else {
   stop(paste("Directory \"",dir,"\" doesn't exist!"))
@@ -79,7 +76,6 @@ for (a in 1:subj_cnt) {
     independent_tidy_data[row, 1] = subj_unique[a]
     independent_tidy_data[row, 2] = activities[b, 2]
     one <- tidy_data[tidy_data$subject==a & tidy_data$activity==activities[b, 2], ]
-    -- print(one)
     
     -- get average
     independent_tidy_data[row, 3:tidy_data_cols] <- colMeans(one[, 3:tidy_data_cols])
